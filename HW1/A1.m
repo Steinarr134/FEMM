@@ -14,11 +14,11 @@ Texti = char('Pipe pressure','Flow in pipes','Flow in ends',...
 Type = 1
 switch Type
     case 1
-        d = [75, 50, 38, 50, 65, 25, 50, 75, 65, 75]/100;        % Diameter in m
+        d = [75, 50, 38, 50, 65, 25, 50, 75, 65, 75]/1000;        % Diameter in m
         L = [125, 175, 100, 150, 200, 125, 75, 50, 150, 100];   % Length in m
         rho= 0.8545 ;              % Density in g/cm^3
         rho = rho*(1/1000)/(1/(100^3));
-        mu = 206.89/1000;                % Viscosity in Pa(kg/ms^2
+        mu = 206.89/1000;                % Viscosity in Pa*s[kg/(ms)]
         disp('Pressure vector bar')
         P = [1.5; 1.4; 0; 0; 0; 1.3; 0; 0; 1; 1.2];   %  Pressure in bar
         P = P*10^5;   % Pressure in Pa
@@ -63,12 +63,14 @@ disp('Number of nodes')
 np = size(P,1)              % Calculate number of nodes.
 disp('Element connection matrix')
               %    1    2    3    4    5    6    7    8    9    10
-connect_matrix = [1,4; 2,3; 4,3; 4,8; 8,7; 3,5; 5,7; 5,6; 7,9; 8,10];
+connect_matrix = [1,4; 2,3; 3,4; 4,8; 8,7; 3,5; 5,7; 5,6; 7,9; 8,10];
+
+% fra maxim
+% connect_matrix = [1,4; 2,3; 3,5; 4,3; 4,8; 5,7; 6,5; 7,8; 8,10; 9,7];
 disp('Number of elements')
 ne =size(connect_matrix,1)  % Calculates number of elements
 disp('matrix for known deegres of freedom 0 = known , 1 = unknown')
 ir=[0,0,1,1,1,0,1,1,0,0]
-
 % Zero Global matrix
 K = zeros(np);
 
@@ -151,11 +153,12 @@ p
 disp(Texti(Type*3-1,:))
 qe
 disp(Texti(Type*3,:))
-Q = K*P
+Q = K*P*1000000
+disp('sum of Flow in ends, should be 0')
 sum(Q)
 if Type == 1
-    disp('Velocity in pipes')
-     v'
+    disp('Velocity in pipes[cm/s]')
+     v'.*100
     disp('Reynoldsnumber in pipes')
     Re'
 end
