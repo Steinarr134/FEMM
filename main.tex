@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{FEMM}
+\title{FEMM - Homework}
 \author{Steinarr Hrafn Höskuldsson}
 \date{January 2023}
 
@@ -9,6 +9,24 @@
 
 \maketitle
 
-\section{Introduction}
+\section{sflkjsdf}
+The example program given uses imperial units however the problem is given in metric units.  To keep things simple SI units were used. First the units given had to be converted into SI units. Looking up $1 bar = 10^5 Pa$ and knowing the prefixes was all that was needed.
+
+The example program was then modified, mostly around lines 16 and 66 and executed. The program uses the pipe element equation 
+
+$$\left[K^{(e)}\right]=\frac{\pi d^{(e)^4}}{128 \mu^{(e)} l^{(e)}}\left[\begin{array}{rr}
+1 & -1 \\
+-1 & 1 
+\end{array}\right] $$
+
+which assumes laminar flow.
+
+Executing the program gives solutions of fluid flow rate, $Q$. It is somewhat comforting that the sum of all fluid flow rates is negligible, so the solution does not involve the creation or destruction of matter, which is good.
+
+It is also good that the Reynolds numbers all show laminar flow so the assumption of laminar flow holds as well.
+
+The directions of flows was drawn onto the piping system diagram 
+
+
 
 \end{document}
